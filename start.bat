@@ -24,7 +24,4 @@ if '%errorlevel%' NEQ '0' (
     CD /D "%~dp0"
 ::-------------------------------
 
-powershell get-executionpolicy
-powershell set-executionpolicy remotesigned -Confirm
-powershell ./update
-pause
+powershell ./setup.ps1
