@@ -1,9 +1,10 @@
-$hasWindowsTerminal = winget list | Select-String "Microsoft.VisualStudioCode"
-if(!$hasWindowsTerminal){
+$hasVisualStudioCode = winget list | Select-String "Microsoft.VisualStudioCode"
+if(!$hasVisualStudioCode){
+    Write-Output "Installing Visual Studio COde..."
     winget install Microsoft.VisualStudioCode
 }
 
-wsl -d Arch ./archwsl_tools.sh 
+wsl -d Arch bash archwsl_tools.sh 
 
 Write-Output "Verifying if Docker is installed in Windows..."
 $hasDocker = Get-Service Docker
