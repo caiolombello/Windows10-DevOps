@@ -25,3 +25,5 @@ echo "ParallelDownloads = 5" >> /etc/pacman.conf
 
 echo "Updating system..."
 sudo pacman -Syu
+
+clear
