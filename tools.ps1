@@ -4,7 +4,7 @@ if(!$hasVisualStudioCode){
     winget install Microsoft.VisualStudioCode
 }
 
-wsl -d Arch bash archwsl_tools.sh 
+wsl -d Arch -e ./archwsl_tools.sh 
 
 Write-Output "Verifying if Docker is installed in Windows..."
 $hasDocker = Get-Service Docker

@@ -6,4 +6,4 @@ New-Item -Path C:\Arch -ItemType Directory
 Expand-Archive -Path C:\Windows\Temp\Arch.zip -DestinationPath C:\Arch
 Start-Process -FilePath C:\Arch\arch
 
-wsl -d Arch bash archwsl_setup.sh 
+wsl -d Arch -e ./archwsl_setup.sh 
