@@ -17,15 +17,15 @@ if ($Execution_Process -ne "RemoteSigned"){
 
 ./update
 
-$hasWSL2 = wsl -l -v | find "2"
-if(!$hasWSL2){
-    ./wsl
-}
-
 $hasPackageManager = Get-AppPackage -name 'Microsoft.DesktopAppInstaller'
 if(!$hasPackageManager)
 {
     ./winget
+}
+
+$hasWindowsTerminal = winget list | Select-String "Microsoft.WindowsTerminal"
+if(!$hasWindowsTerminal){
+    ./terminal
 }
 
 $hasGitInstalled = cmd /c "(git > nul || exit 0) && where git > nul 2> nul"
@@ -34,7 +34,12 @@ if(!$hasGitInstalled)
     ./git
 }
 
-git clone https://github.com/LeDragoX/Win-Debloat-Tools.git
+$hasWSL2 = wsl -l -v | find "2"
+if(!$hasWSL2){
+    ./wsl
+}
+
+git clone "https://github.com/LeDragoX/Win-Debloat-Tools.git"
 cd Win-Debloat-Tools
 Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force; ls -Recurse *.ps*1 | Unblock-File; .\"Win10ScriptCLI.ps1"
 cd ..
