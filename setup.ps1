@@ -45,13 +45,12 @@ if(!$hasGitInstalled)
 }
 
 if (wsl --set-default-version 2) {
-    Write-Output "Installing WSL 2..."
     .\wsl
     Clear-Host
 }
 
-$hasArchWSL = wsl -l -v | Select-String "Arch"
-if(!$hasArchWSL){
+$hasArchWSL = wsl -l -q
+if(!$hasArchWSL -eq "Arch"){
     Write-Output "Installing ArchWSL"
     .\archwsl.ps1
     Clear-Host
