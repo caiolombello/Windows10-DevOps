@@ -44,7 +44,7 @@ if(!$hasGitInstalled)
     Clear-Host
 }
 
-if (wsl --version -eq "WSL 2") {
+if (wsl --set-default-version 2) {
     Write-Output "Installing WSL 2..."
     .\wsl
     Clear-Host
