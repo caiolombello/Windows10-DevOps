@@ -57,6 +57,8 @@ if(!$hasArchWSL){
     Clear-Host
 }
 
+.\tools.ps1
+
 $runWinDebloatTools = Read-Host "Run Windows Debloat Tools script? [Y/n]"
 if($runWinDebloatTools.ToLower() -eq "y"){
     git clone "https://github.com/LeDragoX/Win-Debloat-Tools.git"
