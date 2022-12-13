@@ -50,7 +50,7 @@ if (wsl --set-default-version 2) {
     Clear-Host
 }
 
-$hasArchWSL = wsl -l -v | Select-String "ArchWSL"
+$hasArchWSL = wsl -l -v | Select-String "Arch"
 if(!$hasArchWSL){
     Write-Output "Installing ArchWSL"
     .\archwsl.ps1

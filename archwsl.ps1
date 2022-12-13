@@ -1,3 +1,4 @@
+
 $ArchWSL_URI = "https://github.com/yuk7/ArchWSL/releases/download/22.10.16.0/Arch.zip"
 Invoke-WebRequest -Uri $ArchWSL_URI -OutFile Arch.zip
 Move-Item -Path .\Arch.zip -Destination C:\Windows\Temp\Arch.zip
