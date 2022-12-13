@@ -1,15 +1,22 @@
 $update = Read-Host "Verify and update your system? [Y/n]"
 
-if($update.ToLower() -eq "y" || ""){
+if($update.ToLower() -eq "y" -or "\n"){
     Install-Module -Name PSWindowsUpdate -Force
-    Get-Package -Name PSWindowsUpdate
-    get-command -module PSWindowsUpdate
-    Get-WindowsUpdate
+    $hasPSWindowsUpdate = Get-InstalledModule -name 'PSWindowsUpdate'
+    if(!$hasPSWindowsUpdate)
+    {
+        Get-Package -Name PSWindowsUpdate
+        get-command -module PSWindowsUpdate
+    }
     
-    $reboot = Read-Host "Reboot after update? [Y/n]"
-    if($reboot.ToLower() -eq "y" || ""){
-        Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -AutoReboot
-    } else {
-        Install-WindowsUpdate -MicrosoftUpdate -AcceptAll
+    Get-WindowsUpdate
+    $continue = Read-Host "Continue to update? [Y/n]"
+    if($continue.ToLower() -eq "y" -or "\n"){
+        $reboot = Read-Host "Reboot after update? [y/N]"
+        if($reboot.ToLower() -eq "n" -or "\n"){
+            Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -AutoReboot
+        } else {
+            Install-WindowsUpdate -MicrosoftUpdate -AcceptAll
+        }
     }
 }
