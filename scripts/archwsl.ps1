@@ -5,6 +5,6 @@ New-Item -Path C:\Arch -ItemType Directory
 Expand-Archive -Path C:\Windows\Temp\Arch.zip -DestinationPath C:\Arch
 $path = Get-Location
 Set-Location -Path C:\Arch
-Start-Process -FilePath .\arch
+.\arch
 Set-Location -Path $path
 wsl -d Arch comando-aqui
