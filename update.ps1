@@ -1,5 +1,5 @@
 $update = Read-Host "Verify and update your system? [Y/n]"
-if($update.ToLower() -eq "y" -or "\n"){
+if($update.ToLower() -eq "y"){
     Install-Module -Name PSWindowsUpdate -Force
     $hasPSWindowsUpdate = Get-InstalledModule -name 'PSWindowsUpdate'
     if(!$hasPSWindowsUpdate)
@@ -17,9 +17,5 @@ if($update.ToLower() -eq "y" -or "\n"){
         } else {
             Install-WindowsUpdate -MicrosoftUpdate -AcceptAll
         }
-    } else {
-        exit 0
     }
-} else {
-    exit 0
 }
