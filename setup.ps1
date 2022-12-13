@@ -29,3 +29,5 @@ if(!$hasGitInstalled)
 git clone https://github.com/LeDragoX/Win-Debloat-Tools.git
 cd Win-Debloat-Tools
 Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force; ls -Recurse *.ps*1 | Unblock-File; .\"Win10ScriptCLI.ps1"
+
+./wsl
