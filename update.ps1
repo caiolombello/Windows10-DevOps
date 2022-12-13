@@ -10,12 +10,12 @@ if($update.ToLower() -eq "y"){
     
     Get-WindowsUpdate
     $continue = Read-Host "Continue to update? [Y/n]"
-    if($continue.ToLower() -eq "y" -or "\n"){
+    if($continue.ToLower() -eq "y"){
         $reboot = Read-Host "Reboot after update? [y/N]"
-        if($reboot.ToLower() -eq "n" -or "\n"){
-            Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -AutoReboot
+        if($reboot.ToLower() -eq "n"){
+            Install-WindowsUpdate -MicrosoftUpdate -AcceptAll 
         } else {
-            Install-WindowsUpdate -MicrosoftUpdate -AcceptAll
+            Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -AutoReboot
         }
     }
 }
