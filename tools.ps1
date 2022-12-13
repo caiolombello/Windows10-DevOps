@@ -78,10 +78,35 @@ wsl -d Arch echo "alias ls='exa --icons'" >> ~/.zshrc
 wsl -d Arch echo "alias bat='bat --style=auto'" >> ~/.zshrc
 
 Write-Output "Installing Docker in Arch..."
-yay -S docker
+wsl -d Arch yay -S docker
 
 Write-Output "Installing Docker in Windows..."
 
 $Docker_URI = "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe"
 Invoke-WebRequest -Uri $Docker_URI -OutFile "Docker%20Desktop%20Installer.exe"
 Start-Process 'Docker Desktop Installer.exe' -Wait install --accept-license --backend=wsl-2
+
+Write-Output "Installing Kubernetes in Windows..."
+winget install -e --id Kubernetes.kubectl
+kubectl completion powershell | Out-String | Invoke-Expression
+kubectl completion powershell >> $PROFILE
+
+Write-Output "Installing Kubernetes in Arch..."
+wsl -d curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+wsl -d source <(kubectl completion zsh)
+
+Write-Output "Installing K3d..."
+wsl -d Arch wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+
+Write-Output "Installing zip & unzip..."
+wsl -d Arch yay -S zip unzip
+
+Write-Output "Installing Vault..."
+wsl -d Arch wget https://releases.hashicorp.com/vault/1.12.2/vault_1.12.2_linux_amd64.zip
+wsl -d Arch unzip vault_1.12.2_linux_amd64.zip
+wsl -d Arch sudo mv vault /usr/bin/vault
+
+Write-Output "Installing Terraform..."
+wsl -d Arch wget https://releases.hashicorp.com/terraform/1.3.6/terraform_1.3.6_linux_amd64.zip
+wsl -d Arch unzip terraform_1.3.6_linux_amd64.zip
+wsl -d Arch sudo mv terraform /usr/bin/terraform
