@@ -35,4 +35,5 @@ if(!$hasArchWSL){
     $path = pwd
     cd /Arch
     arch
+    cd $path
 }

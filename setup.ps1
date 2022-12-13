@@ -34,8 +34,7 @@ if(!$hasGitInstalled)
     ./git
 }
 
-$hasWSL2 = wsl -l -v | find "2"
-if(!$hasWSL2){
+if (wsl --version -eq "WSL 2") {
     ./wsl
 }
 
