@@ -28,7 +28,7 @@ if(!$hasWindowsTerminal){
     ./terminal
 }
 
-$hasGitInstalled = cmd /c "(git > nul || exit 0) && where git > nul 2> nul"
+$hasGitInstalled = winget list | Select-String "Git.Git"
 if(!$hasGitInstalled)
 {
     ./git
